@@ -1,0 +1,20 @@
+---
+- hosts: dev
+  tasks:
+    - name: installation apache webserver    
+      ansible.builtin.yum:
+        name: httpd
+        state: latest
+
+    - name: start server
+      ansible.builtin.service:
+        name: httpd
+        state: started
+
+    - name: Copy file index.html (customising)
+      ansible.builtin.copy:
+        src: /etc/ansible/playbooks/index.html
+        dest: /var/www/html/
+        
+    
+    

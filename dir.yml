@@ -1,0 +1,14 @@
+---
+- hosts: dev
+  tasks:
+    - name: create a folder     
+      ansible.builtin.file:
+        path: /home/ec2-user/sara1
+        state: directory
+
+    - name: install git on node1
+      ansible.builtin.yum:
+        name: git
+        state: present
+
+
