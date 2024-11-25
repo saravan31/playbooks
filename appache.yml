@@ -15,6 +15,20 @@
       ansible.builtin.copy:
         src: /etc/ansible/playbooks/index.html
         dest: /var/www/html/
-        
+    
+    - name: changing the port number
+      ansible.builtin.template:
+         src: /etc/ansible/playbooks/httpd.conf.j2
+         dest: /etc/httpd/conf/httpd.conf
+      vars:
+        port: 90
+      notify:
+      - Restart Apache
+  handlers:
+    - name: Restart Apache
+      ansible.builtin.service:
+        name: httpd
+        state: restarted
+             
     
     
